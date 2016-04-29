@@ -112,16 +112,16 @@ class XLSXBook(BookReader):
 
     def read_all(self):
         result = OrderedDict()
-        for sheet in self.book:
+        for sheet in self.book.worksheets:
             sheet = XLSXSheet(sheet)
             result[sheet.name] = sheet.to_array()
         return result
         
     def _load_from_memory(self):
-        self.book = list(load_workbook(filename=self.file_stream))
+        self.book = load_workbook(filename=self.file_stream, use_iterators=True)
 
     def _load_from_file(self):
-        self.book = list(load_workbook(filename=self.file_name))
+        self.book = load_workbook(filename=self.file_name, use_iterators=True)
 
 
 class XLSXSheetWriter(SheetWriter):
