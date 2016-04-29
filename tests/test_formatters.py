@@ -17,9 +17,9 @@ class TestDateFormat:
         assert r[1,0].strftime("%d/%m/%y") == "25/12/14"
         assert isinstance(r[1,1], datetime.time) == True
         assert r[1,1].strftime("%H:%M:%S") == "11:11:11"
+        assert r[4,1].isoformat() == "1899-12-30T00:00:00", r[4,1].isoformat()
         value = r[4,0].isoformat()
         assert value == "1899-12-30T00:00:00", value
-        assert r[4,1].isoformat() == "1899-12-30T00:00:00", r[4,1].isoformat()
 
     def test_writing_date_format(self):
         excel_filename = "testdateformat.xlsx"
