@@ -51,7 +51,7 @@ class XLSXSheet(SheetReader):
         """
         Number of columns in the xls sheet
         """
-        return self.native_sheet.max_column
+        return self.native_sheet.get_highest_column()
 
     def cell_value(self, row, column):
         """
