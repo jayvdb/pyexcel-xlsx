@@ -101,7 +101,7 @@ class XLSXBook(BookReader):
             return {sheet_name: sheet.to_array()}
 
     def read_sheet_by_index(self, sheet_index):
-        names = self.book.sheetnames
+        names = self.book.get_sheet_names()
         length = len(names)
         if sheet_index < length:
             return self.read_sheet_by_name(names[sheet_index])
