@@ -118,10 +118,10 @@ class XLSXBook(BookReader):
         return result
         
     def _load_from_memory(self):
-        self.book =  load_workbook(filename=self.file_stream)
+        self.book =  load_workbook(filename=self.file_stream, use_iterators=True)
 
     def _load_from_file(self):
-        self.book = load_workbook(filename=self.file_name)
+        self.book = load_workbook(filename=self.file_name, use_iterators=True)
 
 
 class XLSXSheetWriter(SheetWriter):
