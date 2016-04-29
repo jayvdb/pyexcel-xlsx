@@ -8,7 +8,9 @@
     :license: New BSD License
 """
 import sys
-import openpyxl
+
+from openpyxl.reader.excel import load_workbook
+from openpyxl.workbook import Workbook as openpyxl_Workbook
 
 from pyexcel_io.book import BookReader, BookWriter
 from pyexcel_io.sheet import SheetReader, SheetWriter
@@ -116,12 +118,10 @@ class XLSXBook(BookReader):
         return result
         
     def _load_from_memory(self):
-        self.book =  openpyxl.load_workbook(filename=self.file_stream,
-                                            data_only=True)
+        self.book =  load_workbook(filename=self.file_stream, data_only=True)
 
     def _load_from_file(self):
-        self.book = openpyxl.load_workbook(filename=self.file_name,
-                                           data_only=True)
+        self.book = load_workbook(filename=self.file_name, data_only=True)
 
 
 class XLSXSheetWriter(SheetWriter):
@@ -153,7 +153,7 @@ class XLSXWriter(BookWriter):
 
     def open(self, file_name, **keywords):
         BookWriter.open(self, file_name, **keywords)
-        self.native_book = openpyxl.Workbook()
+        self.native_book = openpyxl_Workbook()
 
     def create_sheet(self, name):
         if self.current_sheet == 0:
