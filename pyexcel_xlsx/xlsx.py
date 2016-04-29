@@ -11,7 +11,6 @@ import sys
 
 from openpyxl.reader.excel import load_workbook
 from openpyxl.workbook import Workbook as openpyxl_Workbook
-from openpyxl.cell import column_index_from_string
 
 from pyexcel_io.book import BookReader, BookWriter
 from pyexcel_io.sheet import SheetReader, SheetWriter
@@ -52,7 +51,7 @@ class XLSXSheet(SheetReader):
         """
         Number of columns in the xls sheet
         """
-        return column_index_from_string(self.native_sheet.get_highest_column())
+        return self.native_sheet.get_highest_column()
 
     def cell_value(self, row, column):
         """
