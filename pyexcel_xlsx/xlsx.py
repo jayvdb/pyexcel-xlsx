@@ -118,10 +118,10 @@ class XLSXBook(BookReader):
         return result
         
     def _load_from_memory(self):
-        self.book =  load_workbook(filename=self.file_stream, data_only=True)
+        self.book =  load_workbook(filename=self.file_stream)
 
     def _load_from_file(self):
-        self.book = load_workbook(filename=self.file_name, data_only=True)
+        self.book = load_workbook(filename=self.file_name)
 
 
 class XLSXSheetWriter(SheetWriter):
@@ -159,7 +159,7 @@ class XLSXWriter(BookWriter):
         if self.current_sheet == 0:
             self.current_sheet = 1
             return XLSXSheetWriter(self.native_book,
-                                   self.native_book.active, name)
+                                   self.native_book.get_active_sheet(), name)
         else:
             return XLSXSheetWriter(self.native_book,
                                    self.native_book.create_sheet(), name)
