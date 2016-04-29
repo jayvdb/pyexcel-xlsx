@@ -45,7 +45,7 @@ class XLSXSheet(SheetReader):
         """
         Number of rows in the xls sheet
         """
-        return self.native_sheet.max_row
+        return self.native_sheet.get_highest_row()
 
     def number_of_columns(self):
         """
